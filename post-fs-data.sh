@@ -29,3 +29,16 @@ resetprop ro.boot.selinux enforcing
 # === DELETE LEAKY PROPS ===
 resetprop --delete ro.boot.verifiedbooterror
 resetprop --delete ro.bootloader.lockdowned
+
+# === PRE-EMPTIVE SELINUX CONTEXT FIX ===
+# Set KSU paths to system-level context before app can probe.
+# Luna (and similar detectors) read SELinux xattr via stat()/getfilecon()
+# to fingerprint rooted devices. Stock unrooted never sees /data/adb/ksu.
+# By re-labelling, we make the context match a benign system path.
+sleep 2  # let KSU finish its early mounts
+
+if [ -d /data/adb/ksu ]; then
+    # Re-label KSU tree to a benign userdata context
+    chcon -R u:object_r:system_data_file:s0 /data/adb/ksu 2>/dev/null
+    chcon -R u:object_r:system_data_file:s0 /data/adb/modules 2>/dev/null
+fi
