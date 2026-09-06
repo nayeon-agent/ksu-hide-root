@@ -1,0 +1,7 @@
+id=ksu_hide_root_native
+name=🛡️ KSU Hide Root (Native Zygisk)
+version=v1.0
+versionCode=100
+author=Nayeon ✦
+description=Native Zygisk module – intercept stat/fstat/lstat/access/getxattr to hide root & SELinux context from Luna detector.
+modulePropVersion=2
