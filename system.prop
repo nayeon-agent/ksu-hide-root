@@ -1,0 +1,19 @@
+# === INTEGRITY / BOOT PROPS ===
+ro.boot.vbmeta.device_state=locked
+ro.boot.verifiedbootstate=green
+ro.boot.flash.locked=1
+ro.boot.veritymode=enforcing
+
+# === DEBUG FLAGS ===
+ro.debuggable=0
+ro.force.debuggable=0
+ro.secure=1
+ro.adb.secure=1
+
+# === BUILD TYPE ===
+ro.build.type=user
+ro.build.tags=release-keys
+
+# === WARRANTY CLEAR ===
+ro.boot.warranty_bit=0
+ro.warranty_bit=0
